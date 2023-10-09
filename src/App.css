@@ -34,7 +34,7 @@ input[type="text"] {
 }
 
 button {
-  background-color: #9b450c;
+  background-color: #dc3545;
   color: #fff;
   border: none;
   border-radius: 0.5em;
@@ -48,26 +48,81 @@ ul {
 }
 
 li {
-  /* justify-content: space-between;
-  align-items: center; */
-  background-color: #f9f9f9;
+  background-color: #fde9e9;
   margin: 1em;
   padding: 1em 0em;
   border-radius: 0.5em;
 }
 
-li button {
-  background-color: #dc3545;
-  color: #fff;
-  border: none;
-  border-radius: 0.5em;
-  cursor: pointer;
+li:hover{
+  background-color: #f8c7c7;
+}
+
+
+li button :hover {
+  color: #ecd596;
 }
 
 /* Prevent text overflowing */
-.limited-text {  
-  white-space: nowrap;     
-  overflow: hidden;       
-  text-overflow: ellipsis;  /* '...' at the end */
-  max-width: 12em;        
+.limited-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* '...' at the end */
+  max-width: 12em;
+}
+
+h1 {
+  --s: 0.1em;
+  /* the thickness of the line */
+  --c: #2c4bff;
+  /* the color */
+
+  color: #0000;
+  padding-bottom: var(--s);
+  background:
+    linear-gradient(90deg, var(--c) 50%, #000 0) calc(100% - var(--_p, 0%))/200% 100%,
+    linear-gradient(var(--c) 0 0) 0% 100%/var(--_p, 0%) var(--s) no-repeat;
+  -webkit-background-clip: text, padding-box;
+  background-clip: text, padding-box;
+  transition: 0.5s;
+}
+
+h1:hover {
+  --_p: 100%
+}
+
+h1 {
+  font-family: system-ui, sans-serif;
+  font-size: 3rem;
+  cursor: pointer;
+}
+
+.button-3d {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #b5bec7;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+/* Hover effect - Rotate in 3D space */
+.button-3d:hover {
+  transform: rotate(180deg);
+}
+
+
+.addButton{
+  transform: perspective(500px) rotateY(calc(20deg*var(--_i,-1)));
+  text-shadow: calc(var(--_i,-1)* 0.08em) -.01em 0   var(--c),
+    calc(var(--_i,-1)*-0.08em)  .01em 2px #0004;
+  outline-offset: .1em;
+  transition: 0.3s;
+}
+.addButton:hover{
+  --_p: 0%;
+  --_i: 1;
 }
