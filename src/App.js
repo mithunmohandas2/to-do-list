@@ -1,19 +1,18 @@
-import './App.css';
-import { useEffect, useRef, useState } from 'react';
-import Swal from 'sweetalert2';
 import React from 'react';
+import { useEffect, useRef, useState } from 'react';
+import './App.css';
+import Swal from 'sweetalert2';
 
 function App() {
-  const [toDos, setToDos] = useState([]);
-  const [toDo, setToDo] = useState('');
-  const inputRef = useRef(null)
+  const [toDos, setToDos] = useState([]);     //State of Task lists
+  const [toDo, setToDo] = useState('');       //state of Input
+  const inputRef = useRef(null)               //Reference to input field
 
   useEffect(() => {
     if (inputRef.current) {
-      //focus input by default
-      inputRef.current.focus()
+      inputRef.current.focus()                //focus input by default
     }
-  },[toDo])
+  }, [toDo])
 
   return (
     <div>
@@ -29,15 +28,14 @@ function App() {
 
           {/* Button to add the new Task*/}
           <button className='addButton' id="addTaskButton" onClick={(event) => {
+            // checking whether task already exists
             const isExist = toDos.filter((item) => item.text.toLowerCase().trim() === toDo.toLowerCase().trim());
 
-            //if Valid task entry
-            if (!isExist.length && toDo.trim().length) {
+            if (!isExist.length && toDo.trim().length) {  //if Valid, then task entry
               setToDos([...toDos, { _id: Date.now(), text: toDo.trim(), status: false }])
               setToDo('')
               Swal.fire({ position: 'top-end', icon: 'success', text: 'Added', width: 150, showConfirmButton: false, timer: 700 })
-            } else {
-              //if task already exists
+            } else {     //if task already exists
               Swal.fire({
                 position: 'top-center', icon: 'warning', title: toDo.trim().length ? 'Task already exists' : 'Enter task first',
                 showConfirmButton: false, timer: 1000
